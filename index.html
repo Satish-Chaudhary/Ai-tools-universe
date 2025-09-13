@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Universe - Discover & Explore AI Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h1>AI Tools Universe</h1>
+                        <div class="tagline">Discover, explore, and leverage the power of artificial intelligence</div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input"
+                            placeholder="Search AI tools by name, category, or description..." id="searchInput">
+                    </div>
+                    <button class="header-btn" id="addToolBtn">
+                        <i class="fas fa-plus"></i>
+                        Add AI Tool
+                    </button>
+                    <button class="header-btn" id="compareBtn">
+                        <i class="fas fa-balance-scale"></i>
+                        Compare
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-content">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalTools">0</span>
+                    <span class="stat-label">AI Tools</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalCategories">0</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="newThisWeek">12</span>
+                    <span class="stat-label">New This Week</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalUsers">50K+</span>
+                    <span class="stat-label">Active Users</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="filter-card">
+                    <div class="filter-header">
+                        <h3 class="filter-title">
+                            <i class="fas fa-filter"></i>
+                            Filters
+                        </h3>
+                        <button class="clear-filters" id="clearFilters">Clear All</button>
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="filter-all" checked>
+                            <label for="filter-all">All Tools</label>
+                            <span class="filter-count" id="allToolsCount">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-card">
+                    <div class="filter-header">
+                        <h3 class="filter-title">
+                            <i class="fas fa-tags"></i>
+                            Categories
+                        </h3>
+                    </div>
+                    <div class="sidebar-tabs" id="sidebarTabs">
+                        <!-- Category tabs will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="filter-card">
+                    <div class="filter-header">
+                        <h3 class="filter-title">
+                            <i class="fas fa-star"></i>
+                            Pricing
+                        </h3>
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="filter-free" value="free">
+                            <label for="filter-free">Free</label>
+                            <span class="filter-count">156</span>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="filter-freemium" value="freemium">
+                            <label for="filter-freemium">Freemium</label>
+                            <span class="filter-count">87</span>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="filter-paid" value="paid">
+                            <label for="filter-paid">Paid</label>
+                            <span class="filter-count">63</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-card">
+                    <div class="filter-header">
+                        <h3 class="filter-title">
+                            <i class="fas fa-bookmark"></i>
+                            My Bookmarks
+                        </h3>
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="filter-bookmarked" value="bookmarked">
+                            <label for="filter-bookmarked">Bookmarked Tools</label>
+                            <span class="filter-count" id="bookmarkedCount">0</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="content">
+                <div class="content-header">
+                    <div class="results-info">
+                        <div class="results-count" id="resultsCount">Showing 0 tools</div>
+                    </div>
+                    <div class="view-options">
+                        <button class="view-btn active" id="gridView">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" id="listView">
+                            <i class="fas fa-list"></i>
+                        </button>
+                        <select id="sortSelect" class="sort-dropdown">
+                            <option value="name">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="category">Category</option>
+                            <option value="newest">Newest First</option>
+                            <option value="popular">Most Popular</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                </div>
+                <div class="tools-grid" id="toolsContainer">
+                    <!-- Tools will be populated by JavaScript -->
+                </div>
+
+                <!-- Pagination Controls -->
+                <div class="pagination-container" id="paginationContainer">
+                    <button class="pagination-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                        Previous
+                    </button>
+                    <div class="pagination-info" id="paginationInfo">
+                        Page 1 of 1
+                    </div>
+                    <button class="pagination-btn" id="nextBtn">
+                        Next
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Add Tool Modal -->
+    <div id="addToolModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New AI Tool</h2>
+            <form id="addToolForm">
+                <div class="form-group">
+                    <label for="toolName">Tool Name</label>
+                    <input type="text" id="toolName" required>
+                </div>
+                <div class="form-group">
+                    <label for="toolCategory">Category</label>
+                    <select id="toolCategory" required>
+                        <option value="">Select a category</option>
+                        <option value="email">Email & Productivity</option>
+                        <option value="misc">Miscellaneous Magic</option>
+                        <option value="research">Research & Learning</option>
+                        <option value="video">Video & Audio</option>
+                        <option value="career">Job-Search & Career Growth</option>
+                        <option value="coding">Coding & Development</option>
+                        <option value="writing">Writing & Content Creation</option>
+                        <option value="design">Design & Creativity</option>
+                        <option value="reels">Extra Reels</option>
+                        <option value="viral">Faceless & Viral Content</option>
+                        <option value="marketing">Marketing & Ads</option>
+                        <option value="social">Social-Media</option>
+                        <option value="logo">Logo Generators</option>
+                        <option value="ui">UI / UX</option>
+                        <option value="general">Design (general)</option>
+                        <option value="audio">Audio / Voice</option>
+                        <option value="chatbots">Chatbots & Assistants</option>
+                        <option value="automation">Automation & Integration</option>
+                        <option value="prompt">Prompt Libraries</option>
+                        <option value="presentation">Presentation Makers</option>
+                        <option value="meeting">Meeting Assistants</option>
+                        <option value="website">Website / Landing-Page Builders</option>
+                        <option value="seo">SEO & Content Optimisation</option>
+                        <option value="image">Image Generators / Editors</option>
+                        <option value="video-editors">Video Generators / Editors</option>
+                        <option value="music">Music & Sound</option>
+                        <option value="spreadsheet">Spreadsheets & Data</option>
+                        <option value="data">Data-visualisation & Knowledge</option>
+                        <option value="scheduling">Scheduling & Time</option>
+                        <option value="nocode">No-Code / Prototyping</option>
+                        <option value="llm">Large Language / Multimodal Models</option>
+                        <option value="extensions">Chrome Extensions / Twitter / LinkedIn</option>
+                        <option value="detectors">AI Detectors & Bypass</option>
+                        <option value="plagiarism">Plagiarism & Proofing</option>
+                        <option value="courses">Courses & Learning Platforms</option>
+                        <option value="icons">Icons & Mock-ups</option>
+                        <option value="citations">Research & Citations</option>
+                        <option value="sales">Sales & Outreach</option>
+                        <option value="startup">Startup & Ideation</option>
+                        <option value="utilities">Miscellaneous Utilities</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="toolPricing">Pricing Model</label>
+                    <select id="toolPricing" required>
+                        <option value="">Select pricing model</option>
+                        <option value="free">Free</option>
+                        <option value="freemium">Freemium</option>
+                        <option value="paid">Paid</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="toolDescription">Description</label>
+                    <textarea id="toolDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="toolUrl">Website URL</label>
+                    <input type="url" id="toolUrl" required>
+                </div>
+                <div class="form-group">
+                    <label for="toolFeatures">Key Features (comma separated)</label>
+                    <input type="text" id="toolFeatures"
+                        placeholder="e.g., Text generation, Image editing, Code completion">
+                </div>
+                <button type="submit" class="submit-btn">Add Tool</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Compare Tools Modal -->
+    <div id="compareModal" class="modal">
+        <div class="modal-content comparison-modal">
+            <span class="close">&times;</span>
+            <h2>Compare AI Tools</h2>
+            <div id="compareContent">
+                <p>Select at least 2 tools to compare</p>
+                <div id="compareToolsList" class="filter-options">
+                    <!-- Compare tools will be populated by JavaScript -->
+                </div>
+                <button class="submit-btn" id="doCompare"
+                    style="margin-top: 1rem; width: auto; padding: 10px 20px;">Compare Selected</button>
+            </div>
+            <div id="compareResults" style="display: none;">
+                <table class="comparison-table" id="comparisonTable">
+                    <!-- Comparison table will be populated by JavaScript -->
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        <span id="successText">Success!</span>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="newsletter">
+                    <h3>Stay Updated with AI Trends</h3>
+                    <p>Subscribe to our newsletter and get the latest AI tools and industry insights delivered to your
+                        inbox.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AI Tools Universe</h3>
+                    <p>Your comprehensive directory for discovering and exploring the latest AI tools and technologies.
+                    </p>
+                    <div class="footer-badges">
+                        <div class="footer-badge">
+                            <i class="fas fa-award"></i>
+                            <span>Trusted by 50K+ Users</span>
+                        </div>
+                        <div class="footer-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure & Private</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Popular Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Chatbots & Assistants</a></li>
+                        <li><a href="#">Image Generation</a></li>
+                        <li><a href="#">Writing & Content</a></li>
+                        <li><a href="#">Video Creation</a></li>
+                        <li><a href="#">Coding & Development</a></li>
+                        <li><a href="#">Design & Creativity</a></li>
+                        <li><a href="#">Marketing & SEO</a></li>
+                        <li><a href="#">Research & Learning</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">AI Blog</a></li>
+                        <li><a href="#">Tutorials & Guides</a></li>
+                        <li><a href="#">AI News & Updates</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Submit a Tool</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press Kit</a></li>
+                        <li><a href="#">Partnerships</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                    <h3 style="margin-top: 1.5rem;">Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    &copy; 2023 AI Tools Universe. All rights reserved.
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="#">Sitemap</a>
+                    <a href="#">Accessibility</a>
+                    <a href="#">Status</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
