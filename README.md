@@ -45,7 +45,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/satish189251/ai-tools-universe.git
+   git clone https://github.com/Satish-Chaudhary/ai-tools-universe.git
    cd ai-tools-universe
    ```
 
@@ -204,7 +204,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Satish189251/ai-tools-universe&type=Date)](https://star-history.com/#Satish189251/ai-tools-universe&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Satish-Chaudhary/ai-tools-universe&type=Date)](https://star-history.com/#Satish-Chaudhary/ai-tools-universe&Date)
 
 ---
 
@@ -212,6 +212,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ by the AI Tools Universe Team**
 
-[⭐ Star this repo](https://github.com/Satish189251/ai-tools-universe) • [🐛 Report Bug](https://github.com/Satish189251/ai-tools-universe/issues) • [✨ Request Feature](https://github.com/Satish189251/ai-tools-universe/issues)
+[⭐ Star this repo](https://github.com/Satish-Chaudhary/ai-tools-universe) • [🐛 Report Bug](https://github.com/Satish-Chaudhary/ai-tools-universe/issues) • [✨ Request Feature](https://github.com/Satish-Chaudhqry/ai-tools-universe/issues)
 
 </div>
